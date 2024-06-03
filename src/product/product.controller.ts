@@ -14,7 +14,6 @@ import {
 import { CreateProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 import { Product } from './schemas/product.schema';
-import { Error } from 'mongoose';
 
 @Controller('product')
 export class ProductController {

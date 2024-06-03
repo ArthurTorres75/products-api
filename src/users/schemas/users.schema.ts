@@ -1,5 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Mongoose } from 'mongoose';
 import { Roles } from '../interfaces/users.interface';
 
 export type UsersDocument = HydratedDocument<Users>;
@@ -12,7 +12,7 @@ export class Users {
   @Prop({ type: String, required: true })
   lastName: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, unique: true })
   email: string;
 
   @Prop({ type: String, required: true })
@@ -21,7 +21,7 @@ export class Users {
   @Prop(String)
   token: string;
 
-  @Prop(Roles)
+  @Prop({ type: Mongoose.prototype.ObjectId, ref: Roles, default: Roles.GUEST })
   role: Roles;
 
   @Prop({ type: Date, default: Date.now() })
