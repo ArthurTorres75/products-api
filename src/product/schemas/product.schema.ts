@@ -37,6 +37,7 @@ export class Product {
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
 
+// another was to do the same thing
 // export const ProductSchema = new Schema({
 //   name: { type: String, required: true },
 //   description: String,
