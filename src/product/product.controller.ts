@@ -14,12 +14,16 @@ import {
 import { CreateProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 import { Product } from './schemas/product.schema';
+import { Response } from 'express';
 
 @Controller('product')
 export class ProductController {
   constructor(private productService: ProductService) {}
   @Post('/create')
-  async createPost(@Res() res, @Body() createProductDto: CreateProductDto) {
+  async createPost(
+    @Res() res: Response,
+    @Body() createProductDto: CreateProductDto,
+  ) {
     const newProduct =
       await this.productService.createProduct(createProductDto);
     return res
@@ -28,7 +32,7 @@ export class ProductController {
   }
 
   @Get('/')
-  async getProducts(@Res() res): Promise<Product[]> {
+  async getProducts(@Res() res: Response) {
     const products = await this.productService.getProducts();
     return res.status(HttpStatus.OK).json(products);
   }
